@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Kalam', cursive;
+}
+
+.image-container {
+   text-align: center; 
+}
+
+.image-container img {
+    border: 10px solid black;
+}
+.note-container {
+    background-color: salmon;
+    padding: 20px;
+    color: white;
+    border: 1px solid black;
+}
+.note-container-headline {
+    font-weight: bold;
+    font-size: 20px;
+}
+.note-container-text {
+    font-size: 10px;
+}
