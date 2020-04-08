@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accenture.js.intellicats.shop.dtos.ProductDto;
 import com.accenture.js.intellicats.shop.models.Product;
 import com.accenture.js.intellicats.shop.repositories.ProductRepository;
 
@@ -26,13 +27,18 @@ public class ProductController {
 	}
     
 	@GetMapping("/products/{id}")
-	public ResponseEntity<Product> findByID(@PathVariable("id")Long id) {
+	public ResponseEntity<ProductDto> findByID(@PathVariable("id")Long id) {
 		
 		Optional<Product> byId = productRepository.findById(id);
 		if(byId.isPresent()) {
-			return ResponseEntity.ok(byId.get());
+			ProductDto productDto = new ProductDto();
+			productDto.setEan(byId.get().getEan());
+			productDto.setPrice(byId.get().getPrice());
+			productDto.setTitle(byId.get().getName());
+			
+			return ResponseEntity.ok(productDto);
 		}
-		return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<ProductDto>(HttpStatus.NOT_FOUND);
 	}
 
 	
